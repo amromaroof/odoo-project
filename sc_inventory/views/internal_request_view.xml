@@ -1,0 +1,133 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!-- <record id="sc_stock_request_form" model="ir.ui.view">
+        <field name="name">Stock</field>
+        <field name="model">sc.stock.request</field>
+        <field name="arch" type="xml">
+            <form string="Purchase">
+                <header>
+                    <button name="request" type="object" string="Request" states="draft" class="oe_highlight"/>
+                    <button name="confirm" type="object" string="Manger Confirm" states="request"/>
+                    <button name="second_confirm" type="object" string="Store Confirm" states="confirm"/>
+                    <button name="done" type="object" string="Done" states="second_confirm" class="oe_highlight"/>
+                    <field name="state" widget="statusbar" />
+                </header>
+
+                <sheet>
+                    <group col="4">
+
+                        <field name="date"/>
+                        <field name ="user_id" readonly="1"/>
+                        <field name="department_id"/>
+                         </group>
+                         <group col="4">
+                     <field name="location_id"    />
+                        <field name="location_dest_id"/>
+                    </group>
+                    
+
+                    <notebook>
+                      <page string="Product's Detail">
+
+                        <field name="request_line_ids" required="1" >
+                           <tree editable="botttom">
+                               <field name="product_id" required="1"/>
+                               <field name="requested_qty" />
+                               <field name="approved_qty"/>
+                             
+                                        
+                                    </tree>
+                                </field>
+                            </page>
+                    </notebook>
+                </sheet>
+                <div class="oe_chatter">
+                    <field name="message_follower_ids" widget="mail_followers"/>
+                    <field name="message_ids" widget="mail_thread"/>
+                </div>
+            </form>
+        </field>
+    </record>
+    <record id="sc_stock_requestview_tree" model="ir.ui.view">
+        <field name="name">sc.stock.request</field>
+        <field name="model">sc.stock.request</field>
+        <field name="arch" type="xml">
+            <tree string="Stock">
+                <field name="date"/>
+                <field name="state"/>
+                <field name="department_id"/>
+
+
+
+            </tree>
+        </field>
+    </record> -->
+   <!--  <record model="ir.actions.act_window" id="sc_stock_request_action_window">
+        <field name="name">sc.stock.request</field>
+        <field name="res_model">stock.picking.type</field>
+        <field name="domain">[('code','=','internal')]</field>
+        <field name="view_mode">tree,form</field>
+    </record> -->
+
+          <!--user-->
+   <!-- <record id="view_users_form_inherit" model="ir.ui.view">
+        <field name="name">res.users.form.inherit</field>
+        <field name="model">res.users</field>
+        <field name="type">form</field>
+        <field name="inherit_id" ref="base.view_users_form"/>
+        <field name="arch" type="xml">
+            <field name="partner_id" position="before">
+               <field name="job_id"/>
+             </field>
+        </field>
+    </record> -->
+
+   <record id="stock_picking_form_inherited" model="ir.ui.view">
+        <field name="name">stock.picking.form.inherit</field>
+        <field name="model">stock.picking</field>
+        <field name="type">form</field>
+        <field name="inherit_id" ref="stock.view_picking_form"/>
+        <field name="arch" type="xml">
+          <xpath expr="//field[@name='reserved_availability']" position="after">
+           <field name="requested_qty" />
+          </xpath> 
+
+          <xpath expr="//field[@name='partner_id']" position="after">
+           <field name="select" widget="radio"/>
+          </xpath>
+          <xpath expr="//field[@name='partner_id']" position="after">
+           <field name="department_id" attrs ="{'required':[('select','=','department')], 'invisible':[('select','=','unit')]}"/>
+          </xpath>
+
+          <xpath expr="//field[@name='partner_id']" position="after">
+           <field name="unit_id" attrs ="{'required':[('select','=','unit')], 'invisible':[('select','=','department')]}"/>
+          </xpath>
+          <xpath expr="//field[@name='location_id']" position="attributes">
+           <attribute name="required">False</attribute>
+          </xpath>
+        <xpath expr="//field[@name='location_dest_id']" position="attributes">
+           <attribute name="required">False</attribute>
+          </xpath>
+           <xpath expr="//form/sheet/notebook/page[@name='extra']/group/group/field[@name='picking_type_id']" position="attributes">
+           <attribute name="required">False</attribute>
+          </xpath>
+          <xpath expr="//field[@name='origin']" position="attributes">
+           <attribute name="invisible">True</attribute>
+          </xpath> 
+        </field>
+    </record>
+
+   
+
+   
+
+    <!-- TODO: must add parent-->
+  <!--  <menuitem id="stock_request_menu" name="Stock Request" sequence="2" action="sc_stock_request_action_window" parent="stock.menu_stock_inventory_control"/> -->
+    <!--menuitem id= "menu_purchase_control" group="make_invisible"/-->
+
+
+   <!--  <record model="ir.ui.menu" id="purchase.menu_purchase_form_action">
+        <field name="groups_id" eval="[(6,0,[ref('make_purchase_invisible')])]"/>
+    </record> -->
+
+</odoo>

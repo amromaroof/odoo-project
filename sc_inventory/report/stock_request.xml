@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+   
+     <report 
+        id="stock.action_report_delivery"
+        model="stock.picking"
+        string= "Ornick Stores 46"
+        report_type="qweb-pdf"
+        name="sc_inventory.stock_request_view"
+        file="sc_inventory.stock_request"
+         menu="False"
+    />
+     <report 
+        id="stock.action_report_picking"
+        model="stock.picking"
+        string= "Ornick Stores 46"
+        report_type="qweb-pdf"
+        name="sc_inventory.stock_request_view"
+        file="sc_inventory.stock_request"
+         menu="False"
+    />
+
+     <report 
+        id="stock_request"
+        model="stock.picking"
+        string= "Ornick Stores 46"
+        report_type="qweb-pdf"
+        name="sc_inventory.stock_request_view"
+        file="sc_inventory.stock_request"
+    />
+
+
+    <template id="sc_inventory.stock_request_view">
+        <div class="header" style="width:100%;align:center">
+     <link href="/sc_purchase/static/src/css/inv_style.css" rel="stylesheet" />s
+        <t t-call="web.html_container">
+        <t t-call="web.internal_layout">  
+         
+            <t t-foreach="docs" t-as="doc">
+ 
+                 <div class="page">    
+                    
+                    <h5 style="text-align: right;">اورنيك مخازن رقم 46</h5>
+                             <br></br>   
+                 <h5 style="text-align: right;">الجهة الطالبة :
+                    <td><t t-esc="doc.department_id.name"/></td>
+                 </h5>
+                 <h5 style="text-align: right;">التاريخ:
+                    <span t-esc="doc.date"/>
+              </h5>
+             
+              <br></br>   
+              <br></br>   
+              <center><h3>طلب محلي لأصناف مختلفه  </h3></center>
+              <h5  style="text-align: right; color:red;">A 065898</h5>
+              <br></br>   
+                    <t t-set="no" t-value="1" />
+<table class="table table-condensed table-bordered" style="width:100%;" dir='rtl'>
+                    <thead>
+                            <tr>
+                        <th rowspan="2" class="text-center">اسم الصنف</th>
+                        <th rowspan="2" class="text-center" > الكميه المطلوبه</th>
+                        <th  rowspan="2" class="text-center">الكميه المصدقه</th>
+                       
+                        </tr>
+                        </thead>
+                       <t t-foreach="doc.move_lines" t-as="o">
+
+                         <tr>
+                            
+                             <td rowspan="2" class="text-center"><t t-esc="o.product_id.name"/></td>
+                             <td rowspan="2" class="text-center"><t t-esc="o.requested_qty"/></td>
+                             <td rowspan="2" class="text-center"><t t-esc="o.quantity_done"/></td>
+                             
+                             
+                         </tr>
+                     </t>
+
+
+                    </table>   
+                    
+
+
+                <bottom>
+                 <br></br><br></br><br></br><br></br><br></br><br></br>
+                    <h5 style="text-align: right;">_________________________  :توقيع الجهه الطالبه</h5>
+                    <br></br>
+                    <h5 style="text-align: right;">__________________________ : تصدق بالصرف</h5>
+                     <br></br>
+                    <h5 style="text-align: right;">استلمت الاصناف المذكوره اعلاه</h5>
+                    <br></br>
+                      <h5 style="text-align: right;">_________________________________  :امضاء  </h5>
+                </bottom>
+                 </div>
+                
+            </t>
+            
+            </t>
+        </t>
+    </div>
+    </template>
+
+</odoo>

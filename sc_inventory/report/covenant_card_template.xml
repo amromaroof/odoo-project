@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+<data>
+    <report id="covenant_card_form" 
+        model="sc.stock.request" 
+        string="covenant card" 
+        report_type="qweb-pdf" 
+       name="sc_inventory.stock_card_view"
+       file="sc_inventory.stock_card" />
+
+<template id="sc_inventory.stock_card_view">
+     <div class="header" style="width:100%;align:center">
+    <link href="/sc_purchase/static/src/css/inv_style.css" rel="stylesheet" />
+    <t t-call="web.html_container">
+        <t t-foreach="docs" t-as="o">
+            <t t-call="web.internal_layout">
+           
+                <div class="page">
+                    <div class="oe_structure">
+                        <center>
+                        <h4 > بيان الاصناف المضافة بالعهدة</h4>
+                        <br/>
+                    </center>
+                        <h4  style="text-align: right;">أورنيك المخازن نمرة 50</h4>
+                        <br/>
+                        <h4  style="text-align: right;">قسم نمرة....................</h4>
+                      
+                        
+                    <br/>
+
+        <div class="row"  style="margin-left:60%;border:4px;">
+                      
+        <table  style="width:80%;" dir='rtl'>
+
+                        
+                       
+                </table>
+                        </div>
+                    </div>
+                    <br/>
+
+                        <table class="table table-condensed table-bordered" style="width:100%;" dir='rtl'>
+                            <thead>
+                                <tr>
+                                       <th rowspan="2" class="text-center"><strong>وارد من </strong></th>
+                                     <th colspan="2"  class="text-center"><strong>الكمية المستلمة</strong></th>
+                                    <th rowspan="2" class="text-center"><strong>نمرة العينة</strong></th>
+                                    <th rowspan="2" class="text-center"><strong>بيان</strong></th> 
+                                    <th colspan="2"  class="text-center" ><strong>جملة القيمة</strong></th>
+                                    <th rowspan="2" class="text-center"><strong>نمرة الفاتورة</strong></th> 
+                                  <th rowspan="2" class="text-center"><strong>نمرة الطلب</strong></th> 
+                                  <th rowspan="2" class="text-center"><strong>جملة الموجود بالعهدة</strong></th> 
+                                  <th rowspan="2" class="text-center"><strong>النمرة السابقة</strong></th> 
+                                </tr>
+                                <tr>
+                                    <th class="text-center">وحدة</th>
+                                    <th class="text-center">عدد</th>
+                                    <th class="text-center">قرش</th>
+                                    <th class="text-center">جنية</th>
+                                </tr>
+                            </thead>
+
+                          
+                        </table>   
+                        <h4  style="text-align: right;">التاريخ...................</h4>
+                        <br/>
+                                    <h4  style="text-align: left;">امضاء امين المخزن...................</h4>
+                   
+                        
+
+
+                </div>
+            </t>
+        </t>
+    </t>
+</div>
+</template>
+</data>
+</odoo>

@@ -1,0 +1,121 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="sc_stock_request_external_form" model="ir.ui.view">
+        <field name="name">Stock External</field>
+        <field name="model">sc.stock.request.external</field>
+        <field name="arch" type="xml">
+            <form string="Purchase">
+                <header>
+                    <button name="request" type="object" string="Request" states="draft" class="oe_highlight"/>
+                    <button name="confirm" type="object" string="Manger Confirm" states="request"/>
+                    <button name="second_confirm" type="object" string="Store Confirm" states="request"/>
+                    <button name="done" type="object" string="Done" states="confirm" class="oe_highlight"/>
+                    <field name="state" widget="statusbar" />
+                </header>
+
+                <sheet>
+                    <group col="4">
+
+                        <field name="date"/>
+                        <field name ="user_id" readonly="1"/>
+                        <field name="unit_id"/>
+                    </group>
+                    <group string="Picking information"   col="4">
+                            <field name="location_from_id"  />
+                            <field name="location_to_id"  />
+                            <field name="picking_type_code" />
+                            <field name="picking_id" />
+                        </group>
+
+                    <notebook>
+                      <page string="Product's Detail">
+
+                        <field name="request_line_ids" required="1" >
+                           <tree editable="botttom">
+                               <field name="product_id" required="1"/>
+                               <field name="requested_qty" />
+                              <field name="approved_qty"/>
+                              <field name="onhand_qty"/>
+                                <field name="product_uom_id"/>
+                                        
+                                    </tree>
+                                </field>
+                            </page>
+                    </notebook>
+                </sheet>
+                <div class="oe_chatter">
+                    <field name="message_follower_ids" widget="mail_followers"/>
+                    <field name="message_ids" widget="mail_thread"/>
+                </div>
+            </form>
+        </field>
+    </record>
+    <record id="sc_stock_request_externalview_tree" model="ir.ui.view">
+        <field name="name">sc.stock.request.external</field>
+        <field name="model">sc.stock.request.external</field>
+        <field name="arch" type="xml">
+            <tree string="Stock">
+                <field name="date"/>
+                <field name="state"/>
+                <field name="unit_id"/>
+
+
+
+            </tree>
+        </field>
+    </record>
+    <record model="ir.actions.act_window" id="sc_stock_request_external_action_window">
+        <field name="name">sc.stock.request.external</field>
+        <field name="res_model">sc.stock.request.external</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+
+          <!--user-->
+   <!-- <record id="view_users_form_inherit" model="ir.ui.view">
+        <field name="name">res.users.form.inherit</field>
+        <field name="model">res.users</field>
+        <field name="type">form</field>
+        <field name="inherit_id" ref="base.view_users_form"/>
+        <field name="arch" type="xml">
+            <field name="partner_id" position="before">
+               <field name="job_id"/>
+             </field>
+        </field>
+    </record> -->
+
+  <!--  <record id="stock_picking_form_inherited" model="ir.ui.view">
+        <field name="name">stock.picking.form.inherit</field>
+        <field name="model">stock.picking</field>
+        <field name="type">form</field>
+        <field name="inherit_id" ref="stock.view_picking_form"/>
+        <field name="arch" type="xml">
+          <xpath expr="//field[@name='partner_id']" position="after">
+           <field name="department_id"/>
+          </xpath>
+        </field>
+    </record> -->
+
+    <!-- <record id="purchase_order_form_inherited" model="ir.ui.view">
+        <field name="name">purchase.order.form.inherit</field>
+        <field name="model">purchase.order</field>
+        <field name="type">form</field>
+        <field name="inherit_id" ref="purchase.purchase_order_form"/>
+        <field name="arch" type="xml">
+            <page string="Deliveries &amp; Invoices" position="attributes">
+            <attribute name='invisible'>1</attribute> 
+            </page>
+          
+        </field>
+    </record>
+ -->
+
+    <!-- TODO: must add parent-->
+   <menuitem id="stock_request_external_menu" name=" External Stock Request" sequence="2" action="sc_stock_request_external_action_window" parent="stock.menu_stock_inventory_control"/>
+    <!--menuitem id= "menu_purchase_control" group="make_invisible"/-->
+
+
+   <!--  <record model="ir.ui.menu" id="purchase.menu_purchase_form_action">
+        <field name="groups_id" eval="[(6,0,[ref('make_purchase_invisible')])]"/>
+    </record> -->
+
+</odoo>

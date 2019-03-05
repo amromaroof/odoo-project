@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <report 
+        id="sc_stock_move"
+        model="stock.move"
+        string= "Stock Report"
+        report_type="qweb-pdf"
+        name="sc_inventory.sc_stock_move_view"
+        file="sc_inventory.sc_stock_move"
+    />
+
+    <template id="sc_inventory.sc_stock_move_view">
+        <div class="header" style="width:100%;align:center">
+     <link href="/sc_purchase/static/src/css/inv_style.css" rel="stylesheet" />
+        <t t-call="web.html_container">
+        <t t-call="web.internal_layout">  
+         
+            <t t-foreach="docs" t-as="doc">
+ 
+                 <div class="page">    
+                    
+                    <h5 style="text-align: right;">اورنيك المخازن نمرة 12 س</h5>
+                             <br></br>   
+                 <!-- <h5 style="text-align: right;">الجهة الطالبة :
+                    <td><t t-esc="doc.department_id.name"/></td>
+                 </h5>
+                 <h5 style="text-align: right;">التاريخ:
+                    <span t-esc="doc.date"/>
+              </h5> -->
+             
+              <br></br>   
+              <br></br>   
+              <center><h3>مستند منصرف <br/>ووارد  </h3></center>
+              <br></br>   
+                    <t t-set="no" t-value="1" />
+   <!-- <table class="table table-condensed table-bordered" style="width:100%;" dir='rtl'>
+                    <thead>
+                            <tr>
+                        <th rowspan="2" class="text-center" >العدد او الكمية</th>
+                        <th  rowspan="2" class="text-center" >وصف الصنف</th>
+                        <th rowspan="2" class="text-center" >نمرة العينة</th>
+                        <th rowspan="2" class="text-center" >نمرة صحيفة السجل</th>
+                       
+                        </tr>
+                        </thead>
+                       <t t-foreach="doc.move_lines" t-as="o">
+
+                         <tr>
+                            
+                            
+                             
+                             <td rowspan="2" class="text-center"><t t-esc="o.quantity_done"/></td>
+                             <td rowspan="2" class="text-center"><t t-esc="o.product_id.name"/></td>
+                             <td rowspan="2" class="text-center"></td>
+                             <td rowspan="2" class="text-center"></td>
+                             
+                             
+                         </tr>
+                     </t> 
+
+
+                    </table>    -->
+                    
+
+
+                <bottom>
+                 <br/>
+                    <h5 style="text-align: right;">____________________________ :امضاء الضابط الصارف</h5>
+                    <br/>
+
+                    <h5 style="text-align: right;">وصلت تمام</h5>
+                    <br/>
+                    <h5 style="text-align: right;">_______________________________ : امضاء الضابط المستلم</h5>
+
+                    <br/>
+                      <h5 style="text-align: right;">_________________________________  :التاريخ  </h5>
+                </bottom>
+                 </div>
+                
+            </t>
+            
+            </t>
+        </t>
+    </div>
+    </template>
+
+</odoo>
